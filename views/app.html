@@ -1,0 +1,8 @@
+<h1>Groups</h1>
+
+<div *ngFor="let group of groups">
+  <h2>Group {{group}}</h2>
+  <div *ngFor="let team of teamsForGroup(group)">
+    {{team.name}}
+  </div>
+</div>
