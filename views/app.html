@@ -1,8 +1,18 @@
-<h1>Groups</h1>
-
-<div *ngFor="let group of groups">
-  <h2>Group {{group}}</h2>
-  <div *ngFor="let team of teamsForGroup(group)">
-    {{team.name}}
+<ul class="nav nav-tabs">
+  <li role="presentation" [ngClass]="{ active:group===selectedGroup }" *ngFor="let group of groups">
+    <a (click)="selectGroup(group)">Group {{group}}</a>
+    </li>
+</ul> 
+  <div *ngFor="let group of groups">
+    <div *ngIf="group===selectedGroup">
+    <table class="table table-striped">
+      <tbody>
+        <tr *ngFor="let team of teamsForGroup(group); let i = index" [ngClass]="{ success:team.qualified, danger:!team.qualified }" >
+          <td>{{i + 1}}.</td>
+          <th>{{team.name}}</th>
+          <td>{{team.points}}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>
